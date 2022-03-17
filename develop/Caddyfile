@@ -1,0 +1,11 @@
+{
+	auto_https disable_redirects
+}
+
+https://develop.local:3001 {
+	reverse_proxy 127.0.0.1:3000
+}
+
+https://develop.local:5001 {
+	reverse_proxy 127.0.0.1:5000
+}
