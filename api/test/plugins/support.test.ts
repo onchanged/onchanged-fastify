@@ -1,11 +1,14 @@
-import { test } from "tap";
+import { describe, it } from "mocha";
+import { expect } from "chai";
 import Fastify from "fastify";
 import Support from "../../src/plugins/support";
 
-test("support works standalone", async (t) => {
-  const fastify = Fastify();
-  void fastify.register(Support);
-  await fastify.ready();
+describe("support works standalone", () => {
+  it("someSupport returns hugs", async () => {
+    const fastify = Fastify();
+    void fastify.register(Support);
+    await fastify.ready();
 
-  t.equal(fastify.someSupport(), "hugs");
+    expect(fastify.someSupport()).equal("hugs");
+  });
 });

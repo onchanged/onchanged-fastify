@@ -1,11 +1,16 @@
-import { test } from "tap";
-import { build } from "../helper";
+import { createApp } from "../helper";
+import { describe, it } from "mocha";
+import { expect } from "chai";
 
-test("default root route", async (t) => {
-  const app = await build(t);
-
-  const res = await app.inject({
-    url: "/",
+describe("routes/root", async () => {
+  describe("GET /", () => {
+    it("return root message", async () => {
+      const app = await createApp();
+      const res = await app.inject({
+        url: "/",
+      });
+      expect(JSON.parse(res.payload)).deep.equal({ root: true });
+      await app.close();
+    });
   });
-  t.same(JSON.parse(res.payload), { root: true });
 });
